@@ -1,0 +1,18 @@
+[
+  {
+    "id": "bedd4e5f-95fc-483c-8749-51487b6e6228",
+    "nombre": "Chan",
+    "cargo": "Dev",
+    "salario": 9999,
+    "estado": "activo",
+    "fechaIngreso": "2025-10-22"
+  },
+  {
+    "id": "509b78dd-8c93-45c3-85c9-8aca73481348",
+    "nombre": "Santiago",
+    "cargo": "Pet",
+    "salario": 1900,
+    "estado": "activo",
+    "fechaIngreso": "2025-10-22"
+  }
+]

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { EmployeeCreateSchema } from "@/lib/validation";
-import * as store from "@/lib/store";
+import { EmployeeCreateSchema } from "../../lib/validation";
+import * as store from "../../lib/store";
 export const dynamic = "force-dynamic";
 export async function GET(req: Request) {
 const sp = new URL(req.url).searchParams;

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { EmployeeUpdateSchema } from "@/lib/validation";
-import * as store from "@/lib/store";
+import { EmployeeUpdateSchema } from "../../../lib/validation";
+import * as store from "../../../lib/store";
 export const dynamic = "force-dynamic";
 export async function GET(_: Request, { params }: { params: { id: string }}) {
 const item = await store.get(params.id);

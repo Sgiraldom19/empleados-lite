@@ -164,13 +164,13 @@ export default function EmpleadosPage() {
             placeholder="Salario"
             value={form.salario ?? ""}
             onChange={(e) =>
-              setForm((f) => ({ ...f, salario: e.target.value as any }))
+              setForm((f) => ({ ...f, salario: e.target.value === "" ? undefined : Number(e.target.value)}))
             }
           />
           <select
             value={form.estado ?? "activo"}
             onChange={(e) =>
-              setForm((f) => ({ ...f, estado: e.target.value as any }))
+              setForm((f) => ({ ...f, estado: e.target.value as Emp["estado"]}))
             }
           >
             <option value="activo">activo</option>
