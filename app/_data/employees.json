@@ -1,18 +1,10 @@
 [
   {
-    "id": "bedd4e5f-95fc-483c-8749-51487b6e6228",
-    "nombre": "Chan",
+    "id": "8ff3152d-a395-4b55-9c64-0682aacfdab7",
+    "nombre": "San",
     "cargo": "Dev",
-    "salario": 9999,
+    "salario": 999999,
     "estado": "activo",
-    "fechaIngreso": "2025-10-22"
-  },
-  {
-    "id": "509b78dd-8c93-45c3-85c9-8aca73481348",
-    "nombre": "Santiago",
-    "cargo": "Pet",
-    "salario": 1900,
-    "estado": "activo",
-    "fechaIngreso": "2025-10-22"
+    "fechaIngreso": "2025-10-23"
   }
 ]

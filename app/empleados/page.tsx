@@ -19,6 +19,8 @@ export default function EmpleadosPage() {
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const pageSize = 10;
+  const [showModal, setShowModal] = useState(false);
+
 
   const fetchList = async () => {
     const usp = new URLSearchParams({
@@ -74,6 +76,7 @@ export default function EmpleadosPage() {
     const r = await fetch(`/api/employees/${id}`);
     if (!r.ok) return;
     setForm(await r.json());
+    setShowModal(true);
   }
 
   async function remove(id: string) {
@@ -267,6 +270,89 @@ export default function EmpleadosPage() {
           »
         </button>
       </div>
+      {showModal && (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "rgba(0,0,0,0.5)",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      zIndex: 50,
+    }}
+  >
+    <div
+      style={{
+        background: "#fff",
+        padding: 20,
+        borderRadius: 10,
+        width: "90%",
+        maxWidth: 400,
+      }}
+    >
+      <h3>Editar empleado</h3>
+      <input
+        placeholder="Nombre"
+        value={form.nombre ?? ""}
+        onChange={(e) => setForm((f) => ({ ...f, nombre: e.target.value }))}
+        style={{ width: "100%", marginBottom: 8 }}
+      />
+      <input
+        placeholder="Cargo"
+        value={form.cargo ?? ""}
+        onChange={(e) => setForm((f) => ({ ...f, cargo: e.target.value }))}
+        style={{ width: "100%", marginBottom: 8 }}
+      />
+      <input
+        type="number"
+        placeholder="Salario"
+        value={form.salario ?? ""}
+        onChange={(e) =>
+          setForm((f) => ({
+            ...f,
+            salario:
+              e.target.value === "" ? undefined : Number(e.target.value),
+          }))
+        }
+        style={{ width: "100%", marginBottom: 8 }}
+      />
+      <select
+        value={form.estado ?? "activo"}
+        onChange={(e) =>
+          setForm((f) => ({
+            ...f,
+            estado: e.target.value as Emp["estado"],
+          }))
+        }
+        style={{ width: "100%", marginBottom: 8 }}
+      >
+        <option value="activo">activo</option>
+        <option value="inactivo">inactivo</option>
+      </select>
+      <input
+        type="date"
+        value={form.fechaIngreso ?? ""}
+        onChange={(e) =>
+          setForm((f) => ({ ...f, fechaIngreso: e.target.value }))
+        }
+        style={{ width: "100%", marginBottom: 12 }}
+      />
+
+      <div style={{ display: "flex", justifyContent: "flex-end", gap: 8 }}>
+        <button
+          onClick={() => {
+            save();
+            setShowModal(false);
+          }}
+        >
+          Guardar
+        </button>
+        <button onClick={() => setShowModal(false)}>Cancelar</button>
+      </div>
+    </div>
+  </div>
+)}
     </main>
   );
 }
