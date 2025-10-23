@@ -92,17 +92,10 @@ export default function EmpleadosPage() {
       className="container"
       style={{ maxWidth: 1000, margin: "2rem auto", padding: "0 1rem" }}
     >
-      <h1>Empleados</h1>
+      <h1 className="text-4xl font-bold">Empleados</h1>
 
       {/* Filtros */}
-      <section
-        style={{
-          display: "flex",
-          gap: 8,
-          marginBottom: 12,
-          flexWrap: "wrap",
-        }}
-      >
+      <section>
         <input
           placeholder="Buscar por nombre"
           value={q}
