@@ -1,5 +1,13 @@
 [
   {
+    "id": "57743fe1-0e4a-474c-a699-c9ce28ff3d15",
+    "nombre": "Chantii",
+    "cargo": "Petsss",
+    "salario": 90909090,
+    "estado": "activo",
+    "fechaIngreso": "2025-10-23"
+  },
+  {
     "id": "8d228371-006e-4997-9515-7328c25720bc",
     "nombre": "Miguel10",
     "cargo": "Aprendiz",
@@ -14,14 +22,6 @@
     "salario": 600000,
     "estado": "activo",
     "fechaIngreso": "2025-10-24"
-  },
-  {
-    "id": "fe0f61d3-7ac2-4be6-b3b0-614059eef88c",
-    "nombre": "miguel 8",
-    "cargo": "aprendiz",
-    "salario": 1500000,
-    "estado": "activo",
-    "fechaIngreso": "2025-10-23"
   },
   {
     "id": "eb03d330-26d4-46d0-914b-67b94de927d6",
