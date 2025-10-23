@@ -1,9 +1,89 @@
 [
   {
-    "id": "8ff3152d-a395-4b55-9c64-0682aacfdab7",
-    "nombre": "San",
-    "cargo": "Dev",
-    "salario": 999999,
+    "id": "dc5751b3-9556-4492-820e-2780f35c5757",
+    "nombre": "Sanbenitoo",
+    "cargo": "camelo",
+    "salario": 3000000,
+    "estado": "activo",
+    "fechaIngreso": "2025-10-23"
+  },
+  {
+    "id": "8d228371-006e-4997-9515-7328c25720bc",
+    "nombre": "Miguel10",
+    "cargo": "Aprendiz",
+    "salario": 500000,
+    "estado": "activo",
+    "fechaIngreso": "2025-10-24"
+  },
+  {
+    "id": "c6947b13-dbc1-4b66-997f-1cc222e580c9",
+    "nombre": "Miguel ",
+    "cargo": "Aprendiz8",
+    "salario": 600000,
+    "estado": "activo",
+    "fechaIngreso": "2025-10-24"
+  },
+  {
+    "id": "fe0f61d3-7ac2-4be6-b3b0-614059eef88c",
+    "nombre": "miguel 8",
+    "cargo": "aprendiz",
+    "salario": 1500000,
+    "estado": "activo",
+    "fechaIngreso": "2025-10-23"
+  },
+  {
+    "id": "eb03d330-26d4-46d0-914b-67b94de927d6",
+    "nombre": "Miguel7",
+    "cargo": "full ",
+    "salario": 840000,
+    "estado": "activo",
+    "fechaIngreso": "2025-10-02"
+  },
+  {
+    "id": "669633c1-d3d3-4b96-b045-cf7253070c66",
+    "nombre": "Miguel 6",
+    "cargo": "uno",
+    "salario": 400000,
+    "estado": "activo",
+    "fechaIngreso": "2025-10-23"
+  },
+  {
+    "id": "2551f898-9683-46dc-bd2e-55126aeea492",
+    "nombre": "Miguel5",
+    "cargo": "Desarrollador ",
+    "salario": 9000000,
+    "estado": "inactivo",
+    "fechaIngreso": "2025-10-23"
+  },
+  {
+    "id": "2fc26b01-40a1-4d82-947d-4af6d19d2f4b",
+    "nombre": "Miguel4",
+    "cargo": "Desarrollador",
+    "salario": 3000000,
+    "estado": "activo",
+    "fechaIngreso": "2025-10-23"
+  },
+  {
+    "id": "a07058c3-efc2-4e40-aab8-c376289aa90d",
+    "nombre": "Miguel3",
+    "cargo": "Desarrollador",
+    "salario": 2000000,
+    "estado": "activo",
+    "fechaIngreso": "2025-10-07"
+  },
+  {
+    "id": "2d64ea4d-4484-48d1-a8cb-2b9fc63aa737",
+    "nombre": "Miguel2",
+    "cargo": "Desarrollo",
+    "salario": 2000000,
+    "estado": "inactivo",
+    "fechaIngreso": "2025-10-23"
+  },
+  {
+    "id": "823997b6-2b4b-4ee5-a096-474f8f98f72f",
+    "nombre": "Miguel",
+    "cargo": "Desarollo",
+    "salario": 2000000,
     "estado": "activo",
     "fechaIngreso": "2025-10-23"
   }

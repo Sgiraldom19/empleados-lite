@@ -5,7 +5,7 @@ import * as store from "../../../lib/store";
 export const dynamic = "force-dynamic";
 
 export async function GET(_: Request, ctx: { params: Promise<{ id: string }> }) {
-  const { id } = await ctx.params; // 👈 Esperar params
+  const { id } = await ctx.params; 
   const item = await store.get(id);
   return item
     ? NextResponse.json(item)
@@ -13,7 +13,7 @@ export async function GET(_: Request, ctx: { params: Promise<{ id: string }> }) 
 }
 
 export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }> }) {
-  const { id } = await ctx.params; // 👈 Esperar params
+  const { id } = await ctx.params; 
   const body = await req.json();
   const parsed = EmployeeUpdateSchema.safeParse(body);
 
@@ -27,7 +27,7 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
 }
 
 export async function DELETE(_: Request, ctx: { params: Promise<{ id: string }> }) {
-  const { id } = await ctx.params; // 👈 Esperar params
+  const { id } = await ctx.params; 
   const ok = await store.remove(id);
   return ok
     ? NextResponse.json({ ok: true })
