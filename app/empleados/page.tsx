@@ -226,8 +226,8 @@ export default function EmpleadosPage() {
                 ${emp.salario.toLocaleString()}
               </td>
               <td style={{ padding: 8, textAlign: "center" }}>
-                <button className="border rounded bg-[orange]" onClick={() => edit(emp.id)}>Editar</button>{" "}
-                <button className="border rounded bg-[red]" onClick={() => remove(emp.id)}>Eliminar</button>
+                <button className="border rounded bg-orange-400 cursor-pointer" onClick={() => edit(emp.id)}>Editar</button>{" "}
+                <button className="border rounded bg-red-500 cursor-pointer" onClick={() => remove(emp.id)}>Eliminar</button>
               </td>
             </tr>
           ))}
@@ -238,14 +238,14 @@ export default function EmpleadosPage() {
       <div
         className="flex gap-2 justify-center mt-3"
       >
-        <button className="px-3 py-1 border rounded-md bg-[gray]" disabled={page <= 1} onClick={() => setPage((p) => p - 1)}>
+        <button className="px-3 py-1 border rounded-md bg-gray" disabled={page <= 1} onClick={() => setPage((p) => p - 1)}>
           «
         </button>
         <span>
           Página {page} de {totalPages}
         </span>
         <button
-          className="px-3 py-1 border rounded-md bg-[gray] "
+          className="px-3 py-1 border rounded-md bg-gray"
           disabled={page >= totalPages}
           onClick={() => setPage((p) => p + 1)}
         >
