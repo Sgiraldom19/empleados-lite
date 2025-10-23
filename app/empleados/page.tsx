@@ -89,14 +89,14 @@ export default function EmpleadosPage() {
 
   return (
     <main
-      className="container"
-      style={{ maxWidth: 1000, margin: "2rem auto", padding: "0 1rem" }}
+      className="p-15 m-10"
     >
       <h1 className="text-4xl font-bold">Empleados</h1>
 
       {/* Filtros */}
       <section>
         <input
+          className="m-2 rounded-lg shadow"
           placeholder="Buscar por nombre"
           value={q}
           onChange={(e) => {
@@ -105,6 +105,7 @@ export default function EmpleadosPage() {
           }}
         />
         <input
+          className="m-2 rounded-lg shadow"
           placeholder="Cargo"
           value={cargo}
           onChange={(e) => {
@@ -113,6 +114,7 @@ export default function EmpleadosPage() {
           }}
         />
         <select
+          className="m-2 rounded-lg shadow"
           value={estado}
           onChange={(e) => {
             setPage(1);
@@ -126,36 +128,25 @@ export default function EmpleadosPage() {
       </section>
 
       {/* Formulario */}
-      <section
-        style={{
-          border: "1px solid #e5e7eb",
-          borderRadius: 12,
-          padding: 12,
-          marginBottom: 16,
-          background: "#fff",
-        }}
-      >
-        <h3 style={{ marginTop: 0 }}>
+      <section className="mt-2 mb-10 p-2 border rounded-lg border-gray-300 bg-[#FFFAF5]">
+        <h3 className="text-lg font-bold">
           {editing ? "Editar empleado" : "Nuevo empleado"}
         </h3>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 8,
-          }}
-        >
+        <div className="m-2 p-2">
           <input
+            className="m-2 bg-white rounded-lg shadow"
             placeholder="Nombre"
             value={form.nombre ?? ""}
             onChange={(e) => setForm((f) => ({ ...f, nombre: e.target.value }))}
           />
           <input
+            className="m-2 bg-white rounded-lg shadow"
             placeholder="Cargo"
             value={form.cargo ?? ""}
             onChange={(e) => setForm((f) => ({ ...f, cargo: e.target.value }))}
           />
           <input
+            className="m-2 bg-white rounded-lg shadow"
             type="number"
             placeholder="Salario"
             value={form.salario ?? ""}
@@ -164,6 +155,7 @@ export default function EmpleadosPage() {
             }
           />
           <select
+            className="m-2 bg-white rounded-lg shadow"
             value={form.estado ?? "activo"}
             onChange={(e) =>
               setForm((f) => ({ ...f, estado: e.target.value as Emp["estado"]}))
@@ -173,6 +165,7 @@ export default function EmpleadosPage() {
             <option value="inactivo">inactivo</option>
           </select>
           <input
+            className="m-2 bg-white rounded-lg shadow"
             type="date"
             value={form.fechaIngreso ?? ""}
             onChange={(e) =>
@@ -180,12 +173,12 @@ export default function EmpleadosPage() {
             }
           />
         </div>
-        <div style={{ display: "flex", gap: 8, marginTop: 10 }}>
-          <button onClick={save}>
+        <div>
+          <button className="m-2 border border-gray-300 rounded-lg bg-white shadow cursor-pointer" onClick={save}>
             {editing ? "Guardar cambios" : "Agregar"}
           </button>
           {editing && (
-            <button
+            <button className="m-2 border border-gray-300 rounded-lg bg-white shadow cursor-pointer"
               onClick={() =>
                 setForm({
                   estado: "activo",
