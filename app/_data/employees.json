@@ -1,9 +1,9 @@
 [
   {
-    "id": "8ff3152d-a395-4b55-9c64-0682aacfdab7",
-    "nombre": "San",
-    "cargo": "Dev",
-    "salario": 999999,
+    "id": "ba377085-b2c8-44e5-a637-03c24ad5e5fc",
+    "nombre": "Chan",
+    "cargo": "Devs",
+    "salario": 99999,
     "estado": "activo",
     "fechaIngreso": "2025-10-23"
   }
