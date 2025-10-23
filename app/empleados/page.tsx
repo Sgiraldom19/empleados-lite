@@ -92,7 +92,7 @@ export default function EmpleadosPage() {
       className="container"
       style={{ maxWidth: 1000, margin: "2rem auto", padding: "0 1rem" }}
     >
-      <h1 className="text-4xl font-bold">Empleados</h1>
+      <h1  className="text-4xl font-bold tex">Empleados</h1>
 
       {/* Filtros */}
       <section>
@@ -210,31 +210,31 @@ export default function EmpleadosPage() {
           overflow: "hidden",
         }}
       >
-        <thead style={{ background: "#f8fafc" }}>
+        <thead className="bg-[#5A9690]">
           <tr>
-            <th style={{ textAlign: "left", padding: 8 }}>Nombre</th>
-            <th style={{ textAlign: "left", padding: 8 }}>Cargo</th>
-            <th style={{ padding: 8 }}>Estado</th>
-            <th style={{ padding: 8 }}>Ingreso</th>
-            <th style={{ textAlign: "right", padding: 8 }}>Salario</th>
-            <th style={{ padding: 8 }}>Acciones</th>
+            <th className="text-left p-2">Nombre</th>
+            <th className="text-left p-2">Cargo</th>
+            <th className="p-2">Estado</th>
+            <th className="p-2">Ingreso</th>
+            <th className="text-right p-2">Salario</th>
+            <th className="p-2">Acciones</th>
           </tr>
         </thead>
-        <tbody>
+
+        <tbody className="bg-[#FFFAF5]">
           {data.map((emp) => (
-            <tr key={emp.id} style={{ borderTop: "1px solid #eee" }}>
-              <td style={{ padding: 8 }}>{emp.nombre}</td>
-              <td style={{ padding: 8 }}>{emp.cargo}</td>
-              <td style={{ padding: 8, textAlign: "center" }}>{emp.estado}</td>
-              <td style={{ padding: 8, textAlign: "center" }}>
-                {emp.fechaIngreso}
-              </td>
-              <td style={{ padding: 8, textAlign: "right" }}>
+            <tr key={emp.id} className="border-t border-[#5A9690]">
+              <td className="p-2">{emp.nombre}</td>
+              <td className="p-2">{emp.cargo}</td>
+              <td className="p-2 text-center ">{emp.estado}</td>
+              <td className="p-2 text-center">{emp.fechaIngreso}</td>
+
+              <td className="p-2 text-center text-right">
                 ${emp.salario.toLocaleString()}
               </td>
               <td style={{ padding: 8, textAlign: "center" }}>
-                <button onClick={() => edit(emp.id)}>Editar</button>{" "}
-                <button onClick={() => remove(emp.id)}>Eliminar</button>
+                <button className="border rounded bg-[orange]" onClick={() => edit(emp.id)}>Editar</button>{" "}
+                <button className="border rounded bg-[red]" onClick={() => remove(emp.id)}>Eliminar</button>
               </td>
             </tr>
           ))}
@@ -243,20 +243,16 @@ export default function EmpleadosPage() {
 
       {/* Paginación */}
       <div
-        style={{
-          display: "flex",
-          gap: 8,
-          justifyContent: "center",
-          marginTop: 12,
-        }}
+        className="flex gap-2 justify-center mt-3"
       >
-        <button disabled={page <= 1} onClick={() => setPage((p) => p - 1)}>
+        <button className="px-3 py-1 border rounded-md bg-[gray]" disabled={page <= 1} onClick={() => setPage((p) => p - 1)}>
           «
         </button>
         <span>
           Página {page} de {totalPages}
         </span>
         <button
+          className="px-3 py-1 border rounded-md bg-[gray] "
           disabled={page >= totalPages}
           onClick={() => setPage((p) => p + 1)}
         >
@@ -334,14 +330,16 @@ export default function EmpleadosPage() {
 
       <div style={{ display: "flex", justifyContent: "flex-end", gap: 8 }}>
         <button
+        
           onClick={() => {
             save();
             setShowModal(false);
           }}
+          className="border rounded bg-[green]"
         >
           Guardar
         </button>
-        <button onClick={() => setShowModal(false)}>Cancelar</button>
+        <button className="border rounded bg-[red]" onClick={() => setShowModal(false)}>Cancelar</button>
       </div>
     </div>
   </div>
