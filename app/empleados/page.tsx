@@ -194,14 +194,7 @@ export default function EmpleadosPage() {
 
       {/* Tabla */}
       <table
-        style={{
-          width: "100%",
-          borderCollapse: "collapse",
-          background: "#fff",
-          border: "1px solid #e5e7eb",
-          borderRadius: 12,
-          overflow: "hidden",
-        }}
+        className="w-full border-gray-200 bg-white rounded-x1 overflow-hidden "
       >
         <thead className="bg-[#5A9690]">
           <tr>
@@ -238,14 +231,14 @@ export default function EmpleadosPage() {
       <div
         className="flex gap-2 justify-center mt-3"
       >
-        <button className="px-3 py-1 border rounded-md bg-gray" disabled={page <= 1} onClick={() => setPage((p) => p - 1)}>
+        <button className="px-3 py-1 border rounded-md bg-gray bg-[#5A9690]" disabled={page <= 1} onClick={() => setPage((p) => p - 1)}>
           «
         </button>
         <span>
           Página {page} de {totalPages}
         </span>
         <button
-          className="px-3 py-1 border rounded-md bg-gray"
+          className="px-3 py-1 border rounded-md bg-[#5A9690]"
           disabled={page >= totalPages}
           onClick={() => setPage((p) => p + 1)}
         >
@@ -273,18 +266,18 @@ export default function EmpleadosPage() {
         maxWidth: 400,
       }}
     >
-      <h3>Editar empleado</h3>
+      <h3 className="m-2 text-xl text-center font-bold">Editar empleado</h3>
       <input
         placeholder="Nombre"
         value={form.nombre ?? ""}
         onChange={(e) => setForm((f) => ({ ...f, nombre: e.target.value }))}
-        style={{ width: "100%", marginBottom: 8 }}
+        className="w-full mb-2 shadow rounded-lg"
       />
       <input
         placeholder="Cargo"
         value={form.cargo ?? ""}
         onChange={(e) => setForm((f) => ({ ...f, cargo: e.target.value }))}
-        style={{ width: "100%", marginBottom: 8 }}
+        className="w-full mb-2 shadow rounded-lg"
       />
       <input
         type="number"
@@ -297,7 +290,7 @@ export default function EmpleadosPage() {
               e.target.value === "" ? undefined : Number(e.target.value),
           }))
         }
-        style={{ width: "100%", marginBottom: 8 }}
+        className="w-full mb-2 shadow rounded-lg"
       />
       <select
         value={form.estado ?? "activo"}
@@ -307,7 +300,7 @@ export default function EmpleadosPage() {
             estado: e.target.value as Emp["estado"],
           }))
         }
-        style={{ width: "100%", marginBottom: 8 }}
+        className="w-full mb-2 shadow rounded-lg"
       >
         <option value="activo">activo</option>
         <option value="inactivo">inactivo</option>
@@ -318,10 +311,10 @@ export default function EmpleadosPage() {
         onChange={(e) =>
           setForm((f) => ({ ...f, fechaIngreso: e.target.value }))
         }
-        style={{ width: "100%", marginBottom: 12 }}
+        className="w-full mb-2 shadow rounded-lg"
       />
 
-      <div style={{ display: "flex", justifyContent: "flex-end", gap: 8 }}>
+      <div className="flex justify-end gap-2">
         <button
         
           onClick={() => {
