@@ -253,26 +253,8 @@ export default function EmpleadosPage() {
         </button>
       </div>
       {showModal && (
-  <div
-    style={{
-      position: "fixed",
-      inset: 0,
-      background: "rgba(0,0,0,0.5)",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      zIndex: 50,
-    }}
-  >
-    <div
-      style={{
-        background: "#fff",
-        padding: 20,
-        borderRadius: 10,
-        width: "90%",
-        maxWidth: 400,
-      }}
-    >
+  <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+    <div className="bg-white p-5 rounded-lg w-[90%] max-w-[400px] shadow-lg">
       <h3>Editar empleado</h3>
       <input
         placeholder="Nombre"
@@ -321,18 +303,19 @@ export default function EmpleadosPage() {
         style={{ width: "100%", marginBottom: 12 }}
       />
 
-      <div style={{ display: "flex", justifyContent: "flex-end", gap: 8 }}>
+      <div className="space-x-4 mt-3">
         <button
         
           onClick={() => {
             save();
             setShowModal(false);
           }}
-          className="border rounded bg-[green]"
+          className="shadow rounded-lg bg-green-500 cursor-pointer p-1"
         >
           Guardar
         </button>
-        <button className="border rounded bg-[red]" onClick={() => setShowModal(false)}>Cancelar</button>
+        <button className="shadow rounded-lg bg-red-500 cursor-pointer p-1" 
+          onClick={() => setShowModal(false)}>Cancelar</button>
       </div>
     </div>
   </div>
