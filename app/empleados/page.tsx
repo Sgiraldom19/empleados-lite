@@ -174,11 +174,11 @@ export default function EmpleadosPage() {
           />
         </div>
         <div>
-          <button className="m-2 border border-gray-300 rounded-lg bg-white shadow cursor-pointer" onClick={save}>
+          <button className="p-1 m-2 border-gray-300 rounded-lg bg-white shadow cursor-pointer" onClick={save}>
             {editing ? "Guardar cambios" : "Agregar"}
           </button>
           {editing && (
-            <button className="m-2 border border-gray-300 rounded-lg bg-white shadow cursor-pointer"
+            <button className="p-1 m-2 border-gray-300 rounded-lg bg-white shadow cursor-pointer"
               onClick={() =>
                 setForm({
                   estado: "activo",
@@ -219,8 +219,8 @@ export default function EmpleadosPage() {
                 ${emp.salario.toLocaleString()}
               </td>
               <td style={{ padding: 8, textAlign: "center" }}>
-                <button className="border rounded bg-orange-400 cursor-pointer" onClick={() => edit(emp.id)}>Editar</button>{" "}
-                <button className="border rounded bg-red-500 cursor-pointer" onClick={() => remove(emp.id)}>Eliminar</button>
+                <button className="shadow mr-1 p-1 rounded-lg bg-yellow-400 cursor-pointer" onClick={() => edit(emp.id)}>Editar</button>{" "}
+                <button className="shadow ml-1 p-1 rounded-lg bg-red-500 cursor-pointer" onClick={() => remove(emp.id)}>Eliminar</button>
               </td>
             </tr>
           ))}
@@ -231,14 +231,14 @@ export default function EmpleadosPage() {
       <div
         className="flex gap-2 justify-center mt-3"
       >
-        <button className="px-3 py-1 border rounded-md bg-gray bg-[#5A9690]" disabled={page <= 1} onClick={() => setPage((p) => p - 1)}>
+        <button className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]" disabled={page <= 1} onClick={() => setPage((p) => p - 1)}>
           «
         </button>
         <span>
           Página {page} de {totalPages}
         </span>
         <button
-          className="px-3 py-1 border rounded-md bg-[#5A9690]"
+          className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]"
           disabled={page >= totalPages}
           onClick={() => setPage((p) => p + 1)}
         >
@@ -248,7 +248,7 @@ export default function EmpleadosPage() {
       {showModal && (
   <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
     <div className="bg-white p-5 rounded-lg w-[90%] max-w-[400px] shadow-lg">
-      <h3>Editar empleado</h3>
+      <h3 className="text-xl font-bold mb-4">Editar empleado</h3>
       <input
         placeholder="Nombre"
         value={form.nombre ?? ""}
