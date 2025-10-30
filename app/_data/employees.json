@@ -1,5 +1,21 @@
 [
   {
+    "id": "13358b3b-d994-4ca0-9fa7-59e7d6b1c724",
+    "nombre": "Zapata",
+    "cargo": "Albañil",
+    "salario": 5000,
+    "estado": "activo",
+    "fechaIngreso": "2025-10-30"
+  },
+  {
+    "id": "6adf659d-98bf-43c9-9da7-030643715c15",
+    "nombre": "Alejandro",
+    "cargo": "Zapatero",
+    "salario": 10000,
+    "estado": "activo",
+    "fechaIngreso": "2025-10-30"
+  },
+  {
     "id": "89ec7084-88ac-4f02-8af4-0509e1570798",
     "nombre": "Prueba",
     "cargo": "Prueba",
@@ -9,11 +25,11 @@
   },
   {
     "id": "57743fe1-0e4a-474c-a699-c9ce28ff3d15",
-    "nombre": "Chantii",
-    "cargo": "Petsss",
-    "salario": 90909090,
-    "estado": "activo",
-    "fechaIngreso": "2025-10-23"
+    "nombre": "Santiago",
+    "cargo": "dev",
+    "salario": 11000000,
+    "estado": "inactivo",
+    "fechaIngreso": "2025-08-19"
   },
   {
     "id": "8d228371-006e-4997-9515-7328c25720bc",
@@ -61,22 +77,6 @@
     "cargo": "Desarrollador",
     "salario": 3000000,
     "estado": "activo",
-    "fechaIngreso": "2025-10-23"
-  },
-  {
-    "id": "a07058c3-efc2-4e40-aab8-c376289aa90d",
-    "nombre": "Miguel3",
-    "cargo": "Desarrollador",
-    "salario": 2000000,
-    "estado": "activo",
-    "fechaIngreso": "2025-10-07"
-  },
-  {
-    "id": "2d64ea4d-4484-48d1-a8cb-2b9fc63aa737",
-    "nombre": "Miguel2",
-    "cargo": "Desarrollo",
-    "salario": 2000000,
-    "estado": "inactivo",
     "fechaIngreso": "2025-10-23"
   },
   {

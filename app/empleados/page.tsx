@@ -18,9 +18,12 @@ export default function EmpleadosPage() {
   const [estado, setEstado] = useState("");
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
-  const [pageSize, setPageSize] = useState(10)
+  const [pageSize, setPageSize] = useState(10);
   const [showModal, setShowModal] = useState(false);
 
+  // 🧩 NUEVO: estado de ordenamiento
+  const [sort, setSort] = useState("");
+  const [dir, setDir] = useState<"asc" | "desc">("asc");
 
   const fetchList = async () => {
     const usp = new URLSearchParams({
@@ -30,6 +33,8 @@ export default function EmpleadosPage() {
     if (q) usp.set("q", q);
     if (cargo) usp.set("cargo", cargo);
     if (estado) usp.set("estado", estado);
+    if (sort) usp.set("sort", sort);
+    if (dir) usp.set("dir", dir);
 
     const r = await fetch(`/api/employees?${usp.toString()}`);
     const j = await r.json();
@@ -40,7 +45,7 @@ export default function EmpleadosPage() {
   useEffect(() => {
     fetchList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [q, cargo, estado, page, pageSize]);
+  }, [q, cargo, estado, page, pageSize, sort, dir]);
 
   // Crear / Editar
   const [form, setForm] = useState<Partial<Emp>>({
@@ -85,13 +90,21 @@ export default function EmpleadosPage() {
     fetchList();
   }
 
+  // 🧩 NUEVO: función para alternar el orden
+  const toggleSort = (campo: string) => {
+    if (sort === campo) {
+      setDir((d) => (d === "asc" ? "desc" : "asc"));
+    } else {
+      setSort(campo);
+      setDir("asc");
+    }
+  };
+
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
 
   return (
-    <main
-      className="p-15 m-10"
-    >
-      <h1  className="text-4xl font-bold tex">Empleados</h1>
+    <main className="p-15 m-10">
+      <h1 className="text-4xl font-bold tex">Empleados</h1>
 
       {/* Filtros */}
       <section>
@@ -126,21 +139,21 @@ export default function EmpleadosPage() {
           <option value="inactivo">Inactivo</option>
         </select>
 
-          <label>
-            <span>Mostrar</span>
-            <select
-              className=""
-              value={pageSize}
-              onChange={(e) =>{
-                setPageSize(Number(e.target.value));
-                setPage(1);
-              }}
-            >
-              <option value={3}>3</option>
-              <option value={5}>5</option>
-              <option value={10}>10</option>
-              </select>
-          </label>
+        <label>
+          <span>Mostrar</span>
+          <select
+            className=""
+            value={pageSize}
+            onChange={(e) => {
+              setPageSize(Number(e.target.value));
+              setPage(1);
+            }}
+          >
+            <option value={3}>3</option>
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+          </select>
+        </label>
       </section>
 
       {/* Formulario */}
@@ -167,14 +180,23 @@ export default function EmpleadosPage() {
             placeholder="Salario"
             value={form.salario ?? ""}
             onChange={(e) =>
-              setForm((f) => ({ ...f, salario: e.target.value === "" ? undefined : Number(e.target.value)}))
+              setForm((f) => ({
+                ...f,
+                salario:
+                  e.target.value === ""
+                    ? undefined
+                    : Number(e.target.value),
+              }))
             }
           />
           <select
             className="m-2 bg-white rounded-lg shadow"
             value={form.estado ?? "activo"}
             onChange={(e) =>
-              setForm((f) => ({ ...f, estado: e.target.value as Emp["estado"]}))
+              setForm((f) => ({
+                ...f,
+                estado: e.target.value as Emp["estado"],
+              }))
             }
           >
             <option value="activo">activo</option>
@@ -190,11 +212,15 @@ export default function EmpleadosPage() {
           />
         </div>
         <div>
-          <button className="p-1 m-2 border-gray-300 rounded-lg bg-white shadow cursor-pointer" onClick={save}>
+          <button
+            className="p-1 m-2 border-gray-300 rounded-lg bg-white shadow cursor-pointer"
+            onClick={save}
+          >
             {editing ? "Guardar cambios" : "Agregar"}
           </button>
           {editing && (
-            <button className="p-1 m-2 border-gray-300 rounded-lg bg-white shadow cursor-pointer"
+            <button
+              className="p-1 m-2 border-gray-300 rounded-lg bg-white shadow cursor-pointer"
               onClick={() =>
                 setForm({
                   estado: "activo",
@@ -209,16 +235,50 @@ export default function EmpleadosPage() {
       </section>
 
       {/* Tabla */}
-      <table
-        className="w-full border-gray-200 bg-white rounded-lg overflow-hidden"
-      >
+      <table className="w-full border-gray-200 bg-white rounded-lg overflow-hidden">
         <thead className="bg-[#5A9690]">
           <tr>
-            <th className="text-left p-2">Nombre</th>
-            <th className="text-left p-2">Cargo</th>
-            <th className="p-2">Estado</th>
-            <th className="p-2">Ingreso</th>
-            <th className="text-right p-2">Salario</th>
+            <th
+              className="text-left p-2 cursor-pointer select-none"
+              onClick={() => toggleSort("nombre")}
+            >
+              Nombre
+              <span className="ml-1">
+                {sort === "nombre" ? (dir === "asc" ? "↑" : "↓") : "↕"}
+              </span>
+            </th>
+            <th
+              className="text-left p-2 cursor-pointer select-none"
+              onClick={() => toggleSort("cargo")}
+            >
+              Cargo
+              <span className="ml-1">
+                {sort === "cargo" ? (dir === "asc" ? "↑" : "↓") : "↕"}
+              </span>
+            </th>
+            <th
+              className="p-2 cursor-pointer select-none text-center"
+            >
+              Estado
+            </th>
+            <th
+              className="p-2 cursor-pointer select-none text-center"
+              onClick={() => toggleSort("fechaIngreso")}
+            >
+              Ingreso
+              <span className="ml-1">
+                {sort === "fechaIngreso" ? (dir === "asc" ? "↑" : "↓") : "↕"}
+              </span>
+            </th>
+            <th
+              className="text-right p-2 cursor-pointer select-none"
+              onClick={() => toggleSort("salario")}
+            >
+              Salario
+              <span className="ml-1">
+                {sort === "salario" ? (dir === "asc" ? "↑" : "↓") : "↕"}
+              </span>
+            </th>
             <th className="p-2">Acciones</th>
           </tr>
         </thead>
@@ -228,15 +288,24 @@ export default function EmpleadosPage() {
             <tr key={emp.id} className="border-t border-[#5A9690]">
               <td className="p-2">{emp.nombre}</td>
               <td className="p-2">{emp.cargo}</td>
-              <td className="p-2 text-center ">{emp.estado}</td>
+              <td className="p-2 text-center">{emp.estado}</td>
               <td className="p-2 text-center">{emp.fechaIngreso}</td>
-
-              <td className="p-2 text-center text-right">
+              <td className="p-2 text-right">
                 ${emp.salario.toLocaleString()}
               </td>
-              <td style={{ padding: 8, textAlign: "center" }}>
-                <button className="shadow mr-1 p-1 rounded-lg bg-yellow-400 cursor-pointer" onClick={() => edit(emp.id)}>Editar</button>{" "}
-                <button className="shadow ml-1 p-1 rounded-lg bg-red-500 cursor-pointer" onClick={() => remove(emp.id)}>Eliminar</button>
+              <td className="p-2 text-center">
+                <button
+                  className="shadow mr-1 p-1 rounded-lg bg-yellow-400 cursor-pointer"
+                  onClick={() => edit(emp.id)}
+                >
+                  Editar
+                </button>{" "}
+                <button
+                  className="shadow ml-1 p-1 rounded-lg bg-red-500 cursor-pointer"
+                  onClick={() => remove(emp.id)}
+                >
+                  Eliminar
+                </button>
               </td>
             </tr>
           ))}
@@ -244,94 +313,117 @@ export default function EmpleadosPage() {
       </table>
 
       {/* Paginación */}
-      <div
-        className="flex gap-2 justify-center mt-3"
-      >
-        <button className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]" disabled={page <= 1} onClick={() => setPage(1)}>
+      <div className="flex gap-2 justify-center mt-3">
+        <button
+          className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]"
+          disabled={page <= 1}
+          onClick={() => setPage(1)}
+        >
           «
         </button>
-        <button className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]" disabled={page <= 1} onClick={() => setPage((p) => p - 1)}>
+        <button
+          className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]"
+          disabled={page <= 1}
+          onClick={() => setPage((p) => p - 1)}
+        >
           ‹
         </button>
         <span>
           Página {page} de {totalPages}
         </span>
-        <button className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]" disabled={page >= totalPages} onClick={() => setPage((p) => p + 1)}
+        <button
+          className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]"
+          disabled={page >= totalPages}
+          onClick={() => setPage((p) => p + 1)}
         >
           ›
         </button>
-        <button className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]" disabled={page >= totalPages} onClick={() => {setPage(totalPages)}}>
+        <button
+          className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]"
+          disabled={page >= totalPages}
+          onClick={() => setPage(totalPages)}
+        >
           »
         </button>
       </div>
-      {showModal && (
-  <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
-    <div className="bg-white p-5 rounded-lg w-[90%] max-w-[400px] shadow-lg">
-      <h3 className="text-xl font-bold mb-4">Editar empleado</h3>
-      <input
-        placeholder="Nombre"
-        value={form.nombre ?? ""}
-        onChange={(e) => setForm((f) => ({ ...f, nombre: e.target.value }))}
-        className="w-full mb-2 shadow rounded-lg"
-      />
-      <input
-        placeholder="Cargo"
-        value={form.cargo ?? ""}
-        onChange={(e) => setForm((f) => ({ ...f, cargo: e.target.value }))}
-        className="w-full mb-2 shadow rounded-lg"
-      />
-      <input
-        type="number"
-        placeholder="Salario"
-        value={form.salario ?? ""}
-        onChange={(e) =>
-          setForm((f) => ({
-            ...f,
-            salario:
-              e.target.value === "" ? undefined : Number(e.target.value),
-          }))
-        }
-        className="w-full mb-2 shadow rounded-lg"
-      />
-      <select
-        value={form.estado ?? "activo"}
-        onChange={(e) =>
-          setForm((f) => ({
-            ...f,
-            estado: e.target.value as Emp["estado"],
-          }))
-        }
-        className="w-full mb-2 shadow rounded-lg"
-      >
-        <option value="activo">activo</option>
-        <option value="inactivo">inactivo</option>
-      </select>
-      <input
-        type="date"
-        value={form.fechaIngreso ?? ""}
-        onChange={(e) =>
-          setForm((f) => ({ ...f, fechaIngreso: e.target.value }))
-        }
-        className="w-full mb-2 shadow rounded-lg"
-      />
 
-      <div className="space-x-4 mt-3">
-        <button
-        
-          onClick={() => {
-            save();
-            setShowModal(false);
-          }}
-          className="shadow rounded-lg bg-green-500 cursor-pointer p-1"
-        >
-          Guardar
-        </button>
-        <button className="shadow rounded-lg bg-red-500 cursor-pointer p-1" 
-          onClick={() => setShowModal(false)}>Cancelar</button>
-      </div>
-    </div>
-  </div>
-)}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+          <div className="bg-white p-5 rounded-lg w-[90%] max-w-[400px] shadow-lg">
+            <h3 className="text-xl font-bold mb-4">Editar empleado</h3>
+            <input
+              placeholder="Nombre"
+              value={form.nombre ?? ""}
+              onChange={(e) =>
+                setForm((f) => ({ ...f, nombre: e.target.value }))
+              }
+              className="w-full mb-2 shadow rounded-lg"
+            />
+            <input
+              placeholder="Cargo"
+              value={form.cargo ?? ""}
+              onChange={(e) =>
+                setForm((f) => ({ ...f, cargo: e.target.value }))
+              }
+              className="w-full mb-2 shadow rounded-lg"
+            />
+            <input
+              type="number"
+              placeholder="Salario"
+              value={form.salario ?? ""}
+              onChange={(e) =>
+                setForm((f) => ({
+                  ...f,
+                  salario:
+                    e.target.value === ""
+                      ? undefined
+                      : Number(e.target.value),
+                }))
+              }
+              className="w-full mb-2 shadow rounded-lg"
+            />
+            <select
+              value={form.estado ?? "activo"}
+              onChange={(e) =>
+                setForm((f) => ({
+                  ...f,
+                  estado: e.target.value as Emp["estado"],
+                }))
+              }
+              className="w-full mb-2 shadow rounded-lg"
+            >
+              <option value="activo">activo</option>
+              <option value="inactivo">inactivo</option>
+            </select>
+            <input
+              type="date"
+              value={form.fechaIngreso ?? ""}
+              onChange={(e) =>
+                setForm((f) => ({ ...f, fechaIngreso: e.target.value }))
+              }
+              className="w-full mb-2 shadow rounded-lg"
+            />
+
+            <div className="space-x-4 mt-3">
+              <button
+                onClick={() => {
+                  save();
+                  setShowModal(false);
+                }}
+                className="shadow rounded-lg bg-green-500 cursor-pointer p-1"
+              >
+                Guardar
+              </button>
+              <button
+                className="shadow rounded-lg bg-red-500 cursor-pointer p-1"
+                onClick={() => setShowModal(false)}
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
