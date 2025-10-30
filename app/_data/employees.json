@@ -1,5 +1,13 @@
 [
   {
+    "id": "89ec7084-88ac-4f02-8af4-0509e1570798",
+    "nombre": "Prueba",
+    "cargo": "Prueba",
+    "salario": 9999,
+    "estado": "activo",
+    "fechaIngreso": "2025-10-29"
+  },
+  {
     "id": "57743fe1-0e4a-474c-a699-c9ce28ff3d15",
     "nombre": "Chantii",
     "cargo": "Petsss",

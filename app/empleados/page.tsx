@@ -18,7 +18,7 @@ export default function EmpleadosPage() {
   const [estado, setEstado] = useState("");
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
-  const pageSize = 10;
+  const [pageSize, setPageSize] = useState(10)
   const [showModal, setShowModal] = useState(false);
 
 
@@ -40,7 +40,7 @@ export default function EmpleadosPage() {
   useEffect(() => {
     fetchList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [q, cargo, estado, page]);
+  }, [q, cargo, estado, page, pageSize]);
 
   // Crear / Editar
   const [form, setForm] = useState<Partial<Emp>>({
@@ -125,6 +125,22 @@ export default function EmpleadosPage() {
           <option value="activo">Activo</option>
           <option value="inactivo">Inactivo</option>
         </select>
+
+          <label>
+            <span>Mostrar</span>
+            <select
+              className=""
+              value={pageSize}
+              onChange={(e) =>{
+                setPageSize(Number(e.target.value));
+                setPage(1);
+              }}
+            >
+              <option value={3}>3</option>
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+              </select>
+          </label>
       </section>
 
       {/* Formulario */}
@@ -231,8 +247,11 @@ export default function EmpleadosPage() {
       <div
         className="flex gap-2 justify-center mt-3"
       >
-        <button className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]" disabled={page <= 1} onClick={() => setPage((p) => p - 1)}>
+        <button className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]" disabled={page <= 1} onClick={() => setPage(1)}>
           «
+        </button>
+        <button className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]" disabled={page <= 1} onClick={() => setPage((p) => p - 1)}>
+          ‹
         </button>
         <span>
           Página {page} de {totalPages}
@@ -242,6 +261,9 @@ export default function EmpleadosPage() {
           disabled={page >= totalPages}
           onClick={() => setPage((p) => p + 1)}
         >
+          ›
+        </button>
+        <button className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]" disabled={page >= totalPages} onClick={() => {setPage(totalPages)}}>
           »
         </button>
       </div>
