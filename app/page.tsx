@@ -1,9 +1,16 @@
 "use client";
-
 import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation"; // Importamos para sincronizar filtros con la URL
-import { Emp } from "./_types";
 
+
+type Emp = {
+  id: string;
+  nombre: string;
+  cargo: string;
+  salario: number;
+  estado: "activo" | "inactivo";
+  fechaIngreso: string;
+};
 
 export default function EmpleadosPage() {
   const [data, setData] = useState<Emp[]>([]);
