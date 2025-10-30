@@ -210,7 +210,7 @@ export default function EmpleadosPage() {
 
       {/* Tabla */}
       <table
-        className="w-full border-gray-200 bg-white rounded-x1 overflow-hidden "
+        className="w-full border-gray-200 bg-white rounded-lg overflow-hidden"
       >
         <thead className="bg-[#5A9690]">
           <tr>
