@@ -17,16 +17,6 @@ async function writeAll(items: Employee[]) {
   await fs.mkdir(path.dirname(DB_PATH), { recursive: true });
   await fs.writeFile(DB_PATH, JSON.stringify(items, null, 2), "utf-8");
 }
-
-/**
- * list: ahora acepta sort y dir.
- *
- * Reglas de ordenamiento:
- * - nombre: asc => orden alfabético A->Z; desc => no aplicar orden (se devuelve "orden natural")
- * - cargo:  asc => orden alfabético A->Z; desc => no aplicar orden (orden natural)
- * - salario: asc => menor->mayor; desc => mayor->menor
- * - fechaIngreso: asc => antigua->reciente; desc => reciente->antigua
- */
 export async function list(params: {
   q?: string;
   cargo?: string;

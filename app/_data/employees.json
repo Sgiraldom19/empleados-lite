@@ -1,5 +1,13 @@
 [
   {
+    "id": "7500bd29-f044-4ff9-b382-76f999d2aea3",
+    "nombre": "Xiomara",
+    "cargo": "Alzate",
+    "salario": 1000,
+    "estado": "activo",
+    "fechaIngreso": "2025-10-05"
+  },
+  {
     "id": "13358b3b-d994-4ca0-9fa7-59e7d6b1c724",
     "nombre": "Zapata",
     "cargo": "Albañil",
@@ -14,14 +22,6 @@
     "salario": 10000,
     "estado": "activo",
     "fechaIngreso": "2025-10-30"
-  },
-  {
-    "id": "89ec7084-88ac-4f02-8af4-0509e1570798",
-    "nombre": "Prueba",
-    "cargo": "Prueba",
-    "salario": 9999,
-    "estado": "activo",
-    "fechaIngreso": "2025-10-29"
   },
   {
     "id": "57743fe1-0e4a-474c-a699-c9ce28ff3d15",
@@ -73,11 +73,11 @@
   },
   {
     "id": "2fc26b01-40a1-4d82-947d-4af6d19d2f4b",
-    "nombre": "Miguel4",
-    "cargo": "Desarrollador",
-    "salario": 3000000,
-    "estado": "activo",
-    "fechaIngreso": "2025-10-23"
+    "nombre": "Migue",
+    "cargo": "Desarrollador principiante",
+    "salario": 2500000,
+    "estado": "inactivo",
+    "fechaIngreso": "2025-10-22"
   },
   {
     "id": "823997b6-2b4b-4ee5-a096-474f8f98f72f",

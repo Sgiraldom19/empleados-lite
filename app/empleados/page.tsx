@@ -1,15 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation"; // Importamos para sincronizar filtros con la URL
+import { Emp } from "./_types";
 
-type Emp = {
-  id: string;
-  nombre: string;
-  cargo: string;
-  salario: number;
-  estado: "activo" | "inactivo";
-  fechaIngreso: string;
-};
 
 export default function EmpleadosPage() {
   const [data, setData] = useState<Emp[]>([]);
@@ -21,10 +15,43 @@ export default function EmpleadosPage() {
   const [pageSize, setPageSize] = useState(10);
   const [showModal, setShowModal] = useState(false);
 
-  // 🧩 NUEVO: estado de ordenamiento
+  // Estados de ordenamiento
   const [sort, setSort] = useState("");
   const [dir, setDir] = useState<"asc" | "desc">("asc");
 
+  const router = useRouter();
+  const params = useSearchParams();
+
+  // Cargar filtros desde la URL al iniciar
+  useEffect(() => {
+    const qParam = params.get("q") ?? "";
+    const cargoParam = params.get("cargo") ?? "";
+    const estadoParam = params.get("estado") ?? "";
+    const pageParam = Number(params.get("page")) || 1;
+    const sortParam = params.get("sort") ?? "";
+    const dirParam = (params.get("dir") as "asc" | "desc") ?? "asc";
+
+    setQ(qParam);
+    setCargo(cargoParam);
+    setEstado(estadoParam);
+    setPage(pageParam);
+    setSort(sortParam);
+    setDir(dirParam);
+  }, [params]);
+
+  // Actualizar la URL cuando cambian los filtros
+  useEffect(() => {
+    const usp = new URLSearchParams();
+    if (q) usp.set("q", q);
+    if (cargo) usp.set("cargo", cargo);
+    if (estado) usp.set("estado", estado);
+    if (page !== 1) usp.set("page", String(page));
+    if (sort) usp.set("sort", sort);
+    if (dir) usp.set("dir", dir);
+    router.replace(`?${usp.toString()}`);
+  }, [q, cargo, estado, page, sort, dir, router]);
+
+  // Obtener datos del backend
   const fetchList = async () => {
     const usp = new URLSearchParams({
       page: String(page),
@@ -44,10 +71,9 @@ export default function EmpleadosPage() {
 
   useEffect(() => {
     fetchList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q, cargo, estado, page, pageSize, sort, dir]);
 
-  // Crear / Editar
+  // Crear o editar empleado
   const [form, setForm] = useState<Partial<Emp>>({
     estado: "activo",
     fechaIngreso: new Date().toISOString().slice(0, 10),
@@ -90,7 +116,7 @@ export default function EmpleadosPage() {
     fetchList();
   }
 
-  // 🧩 NUEVO: función para alternar el orden
+  // Alternar orden de columnas
   const toggleSort = (campo: string) => {
     if (sort === campo) {
       setDir((d) => (d === "asc" ? "desc" : "asc"));
@@ -104,7 +130,7 @@ export default function EmpleadosPage() {
 
   return (
     <main className="p-15 m-10">
-      <h1 className="text-4xl font-bold tex">Empleados</h1>
+      <h1 className="text-4xl font-bold">Empleados</h1>
 
       {/* Filtros */}
       <section>
@@ -142,7 +168,6 @@ export default function EmpleadosPage() {
         <label>
           <span>Mostrar</span>
           <select
-            className=""
             value={pageSize}
             onChange={(e) => {
               setPageSize(Number(e.target.value));
@@ -183,9 +208,7 @@ export default function EmpleadosPage() {
               setForm((f) => ({
                 ...f,
                 salario:
-                  e.target.value === ""
-                    ? undefined
-                    : Number(e.target.value),
+                  e.target.value === "" ? undefined : Number(e.target.value),
               }))
             }
           />
@@ -256,11 +279,7 @@ export default function EmpleadosPage() {
                 {sort === "cargo" ? (dir === "asc" ? "↑" : "↓") : "↕"}
               </span>
             </th>
-            <th
-              className="p-2 cursor-pointer select-none text-center"
-            >
-              Estado
-            </th>
+            <th className="p-2 text-center">Estado</th>
             <th
               className="p-2 cursor-pointer select-none text-center"
               onClick={() => toggleSort("fechaIngreso")}
@@ -299,7 +318,7 @@ export default function EmpleadosPage() {
                   onClick={() => edit(emp.id)}
                 >
                   Editar
-                </button>{" "}
+                </button>
                 <button
                   className="shadow ml-1 p-1 rounded-lg bg-red-500 cursor-pointer"
                   onClick={() => remove(emp.id)}
@@ -347,6 +366,7 @@ export default function EmpleadosPage() {
         </button>
       </div>
 
+      {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
           <div className="bg-white p-5 rounded-lg w-[90%] max-w-[400px] shadow-lg">
