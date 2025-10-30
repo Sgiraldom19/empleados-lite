@@ -256,10 +256,7 @@ export default function EmpleadosPage() {
         <span>
           Página {page} de {totalPages}
         </span>
-        <button
-          className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]"
-          disabled={page >= totalPages}
-          onClick={() => setPage((p) => p + 1)}
+        <button className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]" disabled={page >= totalPages} onClick={() => setPage((p) => p + 1)}
         >
           ›
         </button>
