@@ -4,7 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation"; // Importamos para
 import Paginacion from "./components/Paginacion";
 import Formulario from "./components/Formulario";
 import { Emp } from "./_types/emp";
-
+import Tabla from "./components/Tabla";
 
 
 export default function EmpleadosPage() {
@@ -189,78 +189,7 @@ export default function EmpleadosPage() {
       <Formulario form={form} editing={editing} setForm={setForm} save={save}/>
 
       {/* Tabla */}
-      <table className="w-full border-gray-200 bg-white rounded-lg overflow-hidden">
-        <thead className="bg-[#5A9690]">
-          <tr>
-            <th
-              className="text-left p-2 cursor-pointer select-none"
-              onClick={() => toggleSort("nombre")}
-            >
-              Nombre
-              <span className="ml-1">
-                {sort === "nombre" ? (dir === "asc" ? "↑" : "↓") : "↕"}
-              </span>
-            </th>
-            <th
-              className="text-left p-2 cursor-pointer select-none"
-              onClick={() => toggleSort("cargo")}
-            >
-              Cargo
-              <span className="ml-1">
-                {sort === "cargo" ? (dir === "asc" ? "↑" : "↓") : "↕"}
-              </span>
-            </th>
-            <th className="p-2 text-center">Estado</th>
-            <th
-              className="p-2 cursor-pointer select-none text-center"
-              onClick={() => toggleSort("fechaIngreso")}
-            >
-              Ingreso
-              <span className="ml-1">
-                {sort === "fechaIngreso" ? (dir === "asc" ? "↑" : "↓") : "↕"}
-              </span>
-            </th>
-            <th
-              className="text-right p-2 cursor-pointer select-none"
-              onClick={() => toggleSort("salario")}
-            >
-              Salario
-              <span className="ml-1">
-                {sort === "salario" ? (dir === "asc" ? "↑" : "↓") : "↕"}
-              </span>
-            </th>
-            <th className="p-2">Acciones</th>
-          </tr>
-        </thead>
-
-        <tbody className="bg-[#FFFAF5]">
-          {data.map((emp) => (
-            <tr key={emp.id} className="border-t border-[#5A9690]">
-              <td className="p-2">{emp.nombre}</td>
-              <td className="p-2">{emp.cargo}</td>
-              <td className="p-2 text-center">{emp.estado}</td>
-              <td className="p-2 text-center">{emp.fechaIngreso}</td>
-              <td className="p-2 text-right">
-                ${emp.salario.toLocaleString()}
-              </td>
-              <td className="p-2 text-center">
-                <button
-                  className="shadow mr-1 p-1 rounded-lg bg-yellow-400 cursor-pointer"
-                  onClick={() => edit(emp.id)}
-                >
-                  Editar
-                </button>
-                <button
-                  className="shadow ml-1 p-1 rounded-lg bg-red-500 cursor-pointer"
-                  onClick={() => remove(emp.id)}
-                >
-                  Eliminar
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <Tabla data={data} sort={sort} dir={dir} toggleSort={toggleSort} edit={edit} remove={remove} />
 
       {/* Paginación */}
       <Paginacion page={page} totalPages={totalPages} onChange={setPage}/>
