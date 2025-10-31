@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation"; // Importamos para sincronizar filtros con la URL
+import Paginacion from "./components/Paginacion";
 
 type Emp = {
   id: string;
@@ -190,80 +191,7 @@ export default function EmpleadosPage() {
       </section>
 
       {/* Formulario */}
-      <section className="mt-2 mb-10 p-2 border rounded-lg border-gray-300 bg-[#FFFAF5]">
-        <h3 className="text-lg font-bold">
-          {editing ? "Editar empleado" : "Nuevo empleado"}
-        </h3>
-        <div className="m-2 p-2">
-          <input
-            className="m-2 bg-white rounded-lg shadow"
-            placeholder="Nombre"
-            value={form.nombre ?? ""}
-            onChange={(e) => setForm((f) => ({ ...f, nombre: e.target.value }))}
-          />
-          <input
-            className="m-2 bg-white rounded-lg shadow"
-            placeholder="Cargo"
-            value={form.cargo ?? ""}
-            onChange={(e) => setForm((f) => ({ ...f, cargo: e.target.value }))}
-          />
-          <input
-            className="m-2 bg-white rounded-lg shadow"
-            type="number"
-            placeholder="Salario"
-            value={form.salario ?? ""}
-            onChange={(e) =>
-              setForm((f) => ({
-                ...f,
-                salario:
-                  e.target.value === "" ? undefined : Number(e.target.value),
-              }))
-            }
-          />
-          <select
-            className="m-2 bg-white rounded-lg shadow"
-            value={form.estado ?? "activo"}
-            onChange={(e) =>
-              setForm((f) => ({
-                ...f,
-                estado: e.target.value as Emp["estado"],
-              }))
-            }
-          >
-            <option value="activo">activo</option>
-            <option value="inactivo">inactivo</option>
-          </select>
-          <input
-            className="m-2 bg-white rounded-lg shadow"
-            type="date"
-            value={form.fechaIngreso ?? ""}
-            onChange={(e) =>
-              setForm((f) => ({ ...f, fechaIngreso: e.target.value }))
-            }
-          />
-        </div>
-        <div>
-          <button
-            className="p-1 m-2 border-gray-300 rounded-lg bg-white shadow cursor-pointer"
-            onClick={save}
-          >
-            {editing ? "Guardar cambios" : "Agregar"}
-          </button>
-          {editing && (
-            <button
-              className="p-1 m-2 border-gray-300 rounded-lg bg-white shadow cursor-pointer"
-              onClick={() =>
-                setForm({
-                  estado: "activo",
-                  fechaIngreso: new Date().toISOString().slice(0, 10),
-                })
-              }
-            >
-              Cancelar
-            </button>
-          )}
-        </div>
-      </section>
+      
 
       {/* Tabla */}
       <table className="w-full border-gray-200 bg-white rounded-lg overflow-hidden">
@@ -340,39 +268,7 @@ export default function EmpleadosPage() {
       </table>
 
       {/* Paginación */}
-      <div className="flex gap-2 justify-center mt-3">
-        <button
-          className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]"
-          disabled={page <= 1}
-          onClick={() => setPage(1)}
-        >
-          «
-        </button>
-        <button
-          className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]"
-          disabled={page <= 1}
-          onClick={() => setPage((p) => p - 1)}
-        >
-          ‹
-        </button>
-        <span>
-          Página {page} de {totalPages}
-        </span>
-        <button
-          className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]"
-          disabled={page >= totalPages}
-          onClick={() => setPage((p) => p + 1)}
-        >
-          ›
-        </button>
-        <button
-          className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]"
-          disabled={page >= totalPages}
-          onClick={() => setPage(totalPages)}
-        >
-          »
-        </button>
-      </div>
+      <Paginacion page={page} totalPages={totalPages} onChange={setPage}/>
 
       {/* Modal */}
       {showModal && (
