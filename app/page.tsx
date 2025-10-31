@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation"; // Importamos para sincronizar filtros con la URL
-
+import Paginacion from "./components/Paginacion";
 
 type Emp = {
   id: string;
@@ -339,39 +339,7 @@ export default function EmpleadosPage() {
       </table>
 
       {/* Paginación */}
-      <div className="flex gap-2 justify-center mt-3">
-        <button
-          className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]"
-          disabled={page <= 1}
-          onClick={() => setPage(1)}
-        >
-          «
-        </button>
-        <button
-          className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]"
-          disabled={page <= 1}
-          onClick={() => setPage((p) => p - 1)}
-        >
-          ‹
-        </button>
-        <span>
-          Página {page} de {totalPages}
-        </span>
-        <button
-          className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]"
-          disabled={page >= totalPages}
-          onClick={() => setPage((p) => p + 1)}
-        >
-          ›
-        </button>
-        <button
-          className="px-3 py-1 shadow-lg rounded-lg bg-[#5A9690]"
-          disabled={page >= totalPages}
-          onClick={() => setPage(totalPages)}
-        >
-          »
-        </button>
-      </div>
+      <Paginacion page={page} totalPages={totalPages} onChange={setPage}/>
 
       {/* Modal */}
       {showModal && (
