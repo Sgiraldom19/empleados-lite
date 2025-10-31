@@ -46,7 +46,7 @@ export default function Formulario({ form, editing, setForm, save }: Props) {
           onChange={(e) =>
             setForm((f) => ({
               ...f,
-              estado: e.target.value,
+              estado: e.target.value as "activo" | "inactivo",
             }))
           }
         >

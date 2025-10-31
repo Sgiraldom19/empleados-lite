@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { startTransition, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation"; // Importamos para sincronizar filtros con la URL
 import Paginacion from "./components/Paginacion";
 import Formulario from "./components/Formulario";
@@ -33,13 +33,15 @@ export default function EmpleadosPage() {
     const sortParam = params.get("sort") ?? "";
     const dirParam = (params.get("dir") as "asc" | "desc") ?? "asc";
 
+  startTransition(() => {
     setQ(qParam);
     setCargo(cargoParam);
     setEstado(estadoParam);
     setPage(pageParam);
     setSort(sortParam);
     setDir(dirParam);
-  }, [params]);
+  });
+}, [params]);
 
   // Actualizar la URL cuando cambian los filtros
   useEffect(() => {
