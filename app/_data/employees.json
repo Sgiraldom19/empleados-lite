@@ -1,5 +1,13 @@
 [
   {
+    "id": "b754e896-efb6-4fb7-9dd6-f549381559fa",
+    "nombre": "Damian",
+    "cargo": "senior",
+    "salario": 12000000,
+    "estado": "inactivo",
+    "fechaIngreso": "2025-10-20"
+  },
+  {
     "id": "821d7552-08a6-43e2-bcf0-c5a0996debfa",
     "nombre": "Chanti",
     "cargo": "Fuchi",
@@ -33,7 +41,7 @@
   },
   {
     "id": "57743fe1-0e4a-474c-a699-c9ce28ff3d15",
-    "nombre": "Santiago",
+    "nombre": "Santi",
     "cargo": "dev",
     "salario": 11000000,
     "estado": "inactivo",
@@ -86,13 +94,5 @@
     "salario": 2500000,
     "estado": "inactivo",
     "fechaIngreso": "2025-10-22"
-  },
-  {
-    "id": "823997b6-2b4b-4ee5-a096-474f8f98f72f",
-    "nombre": "Miguel",
-    "cargo": "Desarollo",
-    "salario": 2000000,
-    "estado": "activo",
-    "fechaIngreso": "2025-10-23"
   }
 ]
