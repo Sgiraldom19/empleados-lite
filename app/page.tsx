@@ -2,15 +2,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation"; // Importamos para sincronizar filtros con la URL
 import Paginacion from "./components/Paginacion";
-
-type Emp = {
-  id: string;
-  nombre: string;
-  cargo: string;
-  salario: number;
-  estado: "activo" | "inactivo";
-  fechaIngreso: string;
-};
+import Formulario from "./components/Formulario";
+import { Emp } from "./_types/emp";
 
 export default function EmpleadosPage() {
   const [data, setData] = useState<Emp[]>([]);
@@ -21,6 +14,8 @@ export default function EmpleadosPage() {
   const [total, setTotal] = useState(0);
   const [pageSize, setPageSize] = useState(10);
   const [showModal, setShowModal] = useState(false);
+  
+  
 
   // Estados de ordenamiento
   const [sort, setSort] = useState("");
@@ -189,7 +184,7 @@ export default function EmpleadosPage() {
       </section>
 
       {/* Formulario */}
-      
+      <Formulario form={form} editing={editing} setForm={setForm} save={save}/>
 
       {/* Tabla */}
       <table className="w-full border-gray-200 bg-white rounded-lg overflow-hidden">
