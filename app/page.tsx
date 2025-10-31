@@ -6,6 +6,7 @@ import Formulario from "./components/Formulario";
 import { Emp } from "./_types/emp";
 import Modal from "./components/Modal";
 import Tabla from "./components/Tabla";
+import Filtros from "./components/Filtros";
 
 
 export default function EmpleadosPage() {
@@ -47,16 +48,27 @@ export default function EmpleadosPage() {
 }, [params]);
 
   // Actualizar la URL cuando cambian los filtros
-  useEffect(() => {
-    const usp = new URLSearchParams();
-    if (q) usp.set("q", q);
-    if (cargo) usp.set("cargo", cargo);
-    if (estado) usp.set("estado", estado);
-    if (page !== 1) usp.set("page", String(page));
-    if (sort) usp.set("sort", sort);
-    if (dir) usp.set("dir", dir);
-    router.replace(`?${usp.toString()}`);
-  }, [q, cargo, estado, page, sort, dir, router]);
+// Lo mofique para que no genere un bucle
+const [isFirstLoad, setIsFirstLoad] = useState(true);
+
+useEffect(() => {
+  // Evita que corra en la primera carga
+  if (isFirstLoad) {
+    setIsFirstLoad(false);
+    return;
+  }
+
+  const usp = new URLSearchParams();
+  if (q) usp.set("q", q);
+  if (cargo) usp.set("cargo", cargo);
+  if (estado) usp.set("estado", estado);
+  if (page !== 1) usp.set("page", String(page));
+  if (sort) usp.set("sort", sort);
+  if (dir) usp.set("dir", dir);
+
+  router.replace(`?${usp.toString()}`);
+}, [q, cargo, estado, page, sort, dir, router]);
+
 
   // Obtener datos del backend
   const fetchList = async () => {
@@ -139,54 +151,18 @@ export default function EmpleadosPage() {
     <main className="p-15 m-10">
       <h1 className="text-4xl font-bold">Empleados</h1>
 
-      {/* Filtros */}
-      <section>
-        <input
-          className="m-2 rounded-lg shadow"
-          placeholder="Buscar por nombre"
-          value={q}
-          onChange={(e) => {
-            setPage(1);
-            setQ(e.target.value);
-          }}
-        />
-        <input
-          className="m-2 rounded-lg shadow"
-          placeholder="Cargo"
-          value={cargo}
-          onChange={(e) => {
-            setPage(1);
-            setCargo(e.target.value);
-          }}
-        />
-        <select
-          className="m-2 rounded-lg shadow"
-          value={estado}
-          onChange={(e) => {
-            setPage(1);
-            setEstado(e.target.value);
-          }}
-        >
-          <option value="">Todos</option>
-          <option value="activo">Activo</option>
-          <option value="inactivo">Inactivo</option>
-        </select>
+     <Filtros
+  q={q}
+  cargo={cargo}
+  estado={estado}
+  pageSize={pageSize}
+  setQ={setQ}
+  setCargo={setCargo}
+  setEstado={setEstado}
+  setPageSize={setPageSize}
+  setPage={setPage}
+/>
 
-        <label>
-          <span>Mostrar</span>
-          <select
-            value={pageSize}
-            onChange={(e) => {
-              setPageSize(Number(e.target.value));
-              setPage(1);
-            }}
-          >
-            <option value={3}>3</option>
-            <option value={5}>5</option>
-            <option value={10}>10</option>
-          </select>
-        </label>
-      </section>
 
       {/* Formulario */}
       <Formulario form={form} editing={editing} setForm={setForm} save={save}/>

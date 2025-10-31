@@ -40,14 +40,6 @@
     "fechaIngreso": "2025-10-30"
   },
   {
-    "id": "57743fe1-0e4a-474c-a699-c9ce28ff3d15",
-    "nombre": "Santi",
-    "cargo": "dev",
-    "salario": 11000000,
-    "estado": "inactivo",
-    "fechaIngreso": "2025-08-19"
-  },
-  {
     "id": "8d228371-006e-4997-9515-7328c25720bc",
     "nombre": "Miguel10",
     "cargo": "Aprendiz",
@@ -64,27 +56,11 @@
     "fechaIngreso": "2025-10-24"
   },
   {
-    "id": "eb03d330-26d4-46d0-914b-67b94de927d6",
-    "nombre": "Miguel7",
-    "cargo": "full ",
-    "salario": 840000,
-    "estado": "activo",
-    "fechaIngreso": "2025-10-02"
-  },
-  {
     "id": "669633c1-d3d3-4b96-b045-cf7253070c66",
     "nombre": "Miguel 6",
     "cargo": "uno",
     "salario": 400000,
     "estado": "activo",
-    "fechaIngreso": "2025-10-23"
-  },
-  {
-    "id": "2551f898-9683-46dc-bd2e-55126aeea492",
-    "nombre": "Miguel5",
-    "cargo": "Desarrollador ",
-    "salario": 9000000,
-    "estado": "inactivo",
     "fechaIngreso": "2025-10-23"
   },
   {
