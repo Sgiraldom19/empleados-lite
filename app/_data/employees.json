@@ -2,26 +2,18 @@
   {
     "id": "b754e896-efb6-4fb7-9dd6-f549381559fa",
     "nombre": "Damian",
-    "cargo": "senior",
-    "salario": 12000000,
+    "cargo": "Senior",
+    "salario": 1400000,
     "estado": "inactivo",
     "fechaIngreso": "2025-10-20"
   },
   {
     "id": "821d7552-08a6-43e2-bcf0-c5a0996debfa",
-    "nombre": "Chanti",
-    "cargo": "Fuchi",
-    "salario": 1908,
+    "nombre": "ChantiG",
+    "cargo": "Fuchibol",
+    "salario": 19000000000,
     "estado": "activo",
     "fechaIngreso": "2025-10-31"
-  },
-  {
-    "id": "7500bd29-f044-4ff9-b382-76f999d2aea3",
-    "nombre": "Xiomara",
-    "cargo": "Alzate",
-    "salario": 1000,
-    "estado": "activo",
-    "fechaIngreso": "2025-10-05"
   },
   {
     "id": "13358b3b-d994-4ca0-9fa7-59e7d6b1c724",
@@ -58,7 +50,7 @@
   {
     "id": "669633c1-d3d3-4b96-b045-cf7253070c66",
     "nombre": "Miguel 6",
-    "cargo": "uno",
+    "cargo": "Uno",
     "salario": 400000,
     "estado": "activo",
     "fechaIngreso": "2025-10-23"
