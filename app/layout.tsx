@@ -16,8 +16,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 <html lang="es">
 <body>
   <Nav />
-  <Footer/>
   {children}
+  <Footer/>
 </body>
 
 </html>
