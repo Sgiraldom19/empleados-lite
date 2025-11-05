@@ -1,5 +1,13 @@
 [
   {
+    "id": "44a3014a-fa22-4c3d-848c-3a8cd3011c75",
+    "nombre": "Miguelitoo",
+    "cargo": "Revision",
+    "salario": 18000000,
+    "estado": "activo",
+    "fechaIngreso": "2025-11-05"
+  },
+  {
     "id": "6c2d58cd-0fcf-4b1c-a543-aa9c8b871926",
     "nombre": "zipack",
     "cargo": "aventurero",

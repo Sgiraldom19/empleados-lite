@@ -10,12 +10,14 @@ import usePagination from "./hooks/usePagination";
 import useFiltro from "./hooks/useFiltro";
 import useFormulario from "./hooks/useFormulario";
 import useModal from "./hooks/useModal";
+import useTabla from "./hooks/useTabla";
 
 
 export default function EmpleadosPage() {
   const [data, setData] = useState<Emp[]>([]);
   const { pageSize, total, setPageSize, setTotal} = usePagination({initialPage: 1, initialPageSize: 10}); 
-  const{ q, cargo, estado, sort, dir, page, setQ, setCargo, setEstado, setSort, setDir, setPage, toggleSort} = useFiltro();
+  const{ q, cargo, estado, page, setQ, setCargo, setEstado, setSort, setDir, setPage} = useFiltro();
+  const{sort, dir, toggleSort} = useTabla();
   const {showModal, openModal, closeModal} = useModal();
   
   async function handleEdit(id: string) {
