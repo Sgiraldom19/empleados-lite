@@ -5,11 +5,11 @@ interface ModalProps {
     showModal: boolean;
     form: Partial<Emp>;
     setForm: React.Dispatch<React.SetStateAction<Partial<Emp>>>;
-    setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+    closeModal: () => void;
     save: () => void;
 }
 
-export default function Modal({showModal, form, setForm, setShowModal, save}: ModalProps) {
+export default function Modal({showModal, form, setForm, closeModal, save}: ModalProps) {
     if (!showModal) return null;
 
   return (
@@ -73,7 +73,7 @@ export default function Modal({showModal, form, setForm, setShowModal, save}: Mo
               <button
                 onClick={() => {
                   save();
-                  setShowModal(false);
+                  closeModal();
                 }}
                 className="shadow rounded-lg bg-green-500 cursor-pointer p-1"
               >
@@ -81,7 +81,7 @@ export default function Modal({showModal, form, setForm, setShowModal, save}: Mo
               </button>
               <button
                 className="shadow rounded-lg bg-red-500 cursor-pointer p-1"
-                onClick={() => setShowModal(false)}
+                onClick={closeModal}
               >
                 Cancelar
               </button>
