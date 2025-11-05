@@ -1,12 +1,13 @@
 "use client";
 import { startTransition, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation"; // Importamos para sincronizar filtros con la URL
-import Paginacion from "./components/Paginacion";
+import Paginacion from "./components/pagination/Paginacion";
 import Formulario from "./components/Formulario";
 import { Emp } from "./_types/emp";
 import Modal from "./components/Modal";
 import Tabla from "./components/Tabla";
 import Filtros from "./components/Filtros";
+import usePagination from "./hooks/usePagination";
 
 
 export default function EmpleadosPage() {
@@ -14,10 +15,8 @@ export default function EmpleadosPage() {
   const [q, setQ] = useState("");
   const [cargo, setCargo] = useState("");
   const [estado, setEstado] = useState("");
-  const [page, setPage] = useState(1);
-  const [total, setTotal] = useState(0);
-  const [pageSize, setPageSize] = useState(10);
   const [showModal, setShowModal] = useState(false);
+  const {page, pageSize, total, setPage, setPageSize, setTotal} = usePagination({initialPage: 1, initialPageSize: 10}); 
   
   
 

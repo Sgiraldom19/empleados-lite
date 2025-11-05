@@ -1,4 +1,3 @@
-
 type Props = {
     page: number;
     totalPages: number;
