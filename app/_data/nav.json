@@ -1,0 +1,8 @@
+{
+    "links": [
+        {"label": "Inicio", "href": "#"},
+        {"label": "Servicios", "href": "#"},
+        {"label": "Proyectos", "href": "#"},
+        {"label": "Contacto", "href": "#"}
+    ]
+}
