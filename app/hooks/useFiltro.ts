@@ -2,7 +2,7 @@
 import { useState, useEffect, startTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export default function useEmployeeFilters() {
+export default function useFiltro() {
   const router = useRouter();
   const params = useSearchParams();
 

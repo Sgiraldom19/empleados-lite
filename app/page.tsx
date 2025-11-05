@@ -8,65 +8,20 @@ import Modal from "./components/Modal";
 import Tabla from "./components/Tabla";
 import Filtros from "./components/Filtros";
 import usePagination from "./hooks/usePagination";
+import useFiltro from "./hooks/useFiltro";
+
 
 
 export default function EmpleadosPage() {
   const [data, setData] = useState<Emp[]>([]);
-  const [q, setQ] = useState("");
-  const [cargo, setCargo] = useState("");
-  const [estado, setEstado] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const {page, pageSize, total, setPage, setPageSize, setTotal} = usePagination({initialPage: 1, initialPageSize: 10}); 
+  const { pageSize, total, setPageSize, setTotal} = usePagination({initialPage: 1, initialPageSize: 10}); 
+  const{ q, cargo, estado, sort, dir, page,
+    setQ, setCargo, setEstado, setSort, setDir, setPage,
+    toggleSort} = useFiltro();
   
-  
 
-  // Estados de ordenamiento
-  const [sort, setSort] = useState("");
-  const [dir, setDir] = useState<"asc" | "desc">("asc");
 
-  const router = useRouter();
-  const params = useSearchParams();
-
-  // Cargar filtros desde la URL al iniciar
-  useEffect(() => {
-    const qParam = params.get("q") ?? "";
-    const cargoParam = params.get("cargo") ?? "";
-    const estadoParam = params.get("estado") ?? "";
-    const pageParam = Number(params.get("page")) || 1;
-    const sortParam = params.get("sort") ?? "";
-    const dirParam = (params.get("dir") as "asc" | "desc") ?? "asc";
-
-  startTransition(() => {
-    setQ(qParam);
-    setCargo(cargoParam);
-    setEstado(estadoParam);
-    setPage(pageParam);
-    setSort(sortParam);
-    setDir(dirParam);
-  });
-}, [params]);
-
-  // Actualizar la URL cuando cambian los filtros
-// Lo mofique para que no genere un bucle
-const [isFirstLoad, setIsFirstLoad] = useState(true);
-
-useEffect(() => {
-  // Evita que corra en la primera carga
-  if (isFirstLoad) {
-    setIsFirstLoad(false);
-    return;
-  }
-
-  const usp = new URLSearchParams();
-  if (q) usp.set("q", q);
-  if (cargo) usp.set("cargo", cargo);
-  if (estado) usp.set("estado", estado);
-  if (page !== 1) usp.set("page", String(page));
-  if (sort) usp.set("sort", sort);
-  if (dir) usp.set("dir", dir);
-
-  router.replace(`?${usp.toString()}`);
-}, [q, cargo, estado, page, sort, dir, router]);
 
 
   // Obtener datos del backend
@@ -134,15 +89,7 @@ useEffect(() => {
     fetchList();
   }
 
-  // Alternar orden de columnas
-  const toggleSort = (campo: string) => {
-    if (sort === campo) {
-      setDir((d) => (d === "asc" ? "desc" : "asc"));
-    } else {
-      setSort(campo);
-      setDir("asc");
-    }
-  };
+  
 
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
 
