@@ -1,6 +1,8 @@
 import "./globals.css";
 import type { ReactNode } from "react";
 import Nav from "./components/Nav";
+import { useFooterData } from "./hooks/useFooterData";
+import Footer from "./components/footer";
  
 export const metadata = {
 
@@ -14,8 +16,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 <html lang="es">
 <body>
   <Nav />
+  <Footer/>
   {children}
 </body>
+
 </html>
 
   );

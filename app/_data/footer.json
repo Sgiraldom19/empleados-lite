@@ -1,0 +1,12 @@
+{
+  "company": "Mi Empresa",
+  "links": [
+    { "text": "Política de privacidad", "url": "/privacidad" },
+    { "text": "Términos y condiciones", "url": "/terminos" },
+    { "text": "Contacto", "url": "/contacto" }
+  ],
+  "social": [
+    { "platform": "Instagram", "url": "" },
+    { "platform": "GitHub", "url": "" }
+  ]
+}
