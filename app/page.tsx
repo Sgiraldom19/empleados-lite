@@ -1,7 +1,6 @@
 "use client";
 import {useEffect, useState } from "react";
 import Paginacion from "./components/pagination/Paginacion";
-import Formulario from "./components/Formulario";
 import { Emp } from "./_types/emp";
 import Modal from "./components/Modal";
 import Tabla from "./components/Tabla";
@@ -62,8 +61,11 @@ export default function EmpleadosPage() {
     {/* Filtros */}
      <Filtros q={q} cargo={cargo} estado={estado} pageSize={pageSize} setQ={setQ} setCargo={setCargo} setEstado={setEstado} setPageSize={setPageSize} setPage={setPage}/>
 
-      {/* Formulario */}
-      <Formulario form={form} editing={editing} setForm={setForm} save={save}/>
+    <div>
+      <button onClick={() => {setForm({estado: "activo", fechaIngreso: new Date().toISOString().slice(0,10)}); openModal();}} className="shadow-md rounded-lg m-2 p-1 bg-gray-200 cursor-pointer">
+        Agregar Empleado
+      </button>
+    </div>
 
       {/* Tabla */}
     <Tabla data={data} sort={sort} dir={dir} toggleSort={toggleSort} edit={handleEdit} remove={remove}/>
