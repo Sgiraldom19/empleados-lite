@@ -15,7 +15,7 @@ export default function Modal({showModal, form, setForm, closeModal, save}: Moda
   return (
         <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
           <div className="bg-white p-5 rounded-lg w-[90%] max-w-[400px] shadow-lg">
-            <h3 className="text-xl font-bold mb-4">Editar empleado</h3>
+            <h3 className="text-xl font-bold mb-4">{form.id ? "Editar Empleado" : "Agregar Empleado"}</h3>
             <input
               placeholder="Nombre"
               value={form.nombre ?? ""}
@@ -52,7 +52,7 @@ export default function Modal({showModal, form, setForm, closeModal, save}: Moda
               onChange={(e) =>
                 setForm((f) => ({
                   ...f,
-                  estado: e.target.value as Emp["estado"],
+                  estado: e.target.value as "activo" | "inactivo",
                 }))
               }
               className="w-full mb-2 shadow rounded-lg"
@@ -77,7 +77,7 @@ export default function Modal({showModal, form, setForm, closeModal, save}: Moda
                 }}
                 className="shadow rounded-lg bg-green-500 cursor-pointer p-1"
               >
-                Guardar
+                {form.id ? "Guardar" : "Agregar"}
               </button>
               <button
                 className="shadow rounded-lg bg-red-500 cursor-pointer p-1"

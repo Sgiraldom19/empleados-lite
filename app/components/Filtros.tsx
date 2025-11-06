@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { Emp } from "../_types/emp";
 
 type Props = {
   q: string;

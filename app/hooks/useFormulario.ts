@@ -10,7 +10,8 @@ export default function useFormulario(fetchList: () => void) {
   const editing = useMemo(() => Boolean(form.id), [form.id]);
 
   async function save() {
-    const body = { ...form, salario: Number(form.salario) };
+    const body = { ...form, estado: form.estado?.trim().toLowerCase(), salario: Number(form.salario) };
+    console.log("Enviando al backend: ", body);
     const opts = {
       method: editing ? "PATCH" : "POST",
       headers: { "Content-Type": "application/json" },
