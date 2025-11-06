@@ -1,7 +1,7 @@
 "use client";
 
-import _data from "../_data/footer.json"
+import { FOOTER_INFO } from "../_data/converFooter";
 
 export function useFooterData() {
-  return _data;
+  return FOOTER_INFO;
 }

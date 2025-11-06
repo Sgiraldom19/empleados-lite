@@ -1,7 +1,23 @@
 [
   {
+    "id": "2cf25985-f21d-4a07-af47-6f127402277d",
+    "nombre": "Angel",
+    "cargo": "Formador",
+    "salario": 200000,
+    "estado": "activo",
+    "fechaIngreso": "2025-11-07"
+  },
+  {
+    "id": "98b4bb18-6b6a-4202-b588-1da9f148432b",
+    "nombre": "Miguelon",
+    "cargo": "Developer",
+    "salario": 1950000,
+    "estado": "activo",
+    "fechaIngreso": "2025-11-01"
+  },
+  {
     "id": "44a3014a-fa22-4c3d-848c-3a8cd3011c75",
-    "nombre": "Miguelitoo",
+    "nombre": "Miguelito",
     "cargo": "Revision",
     "salario": 18000000,
     "estado": "activo",
