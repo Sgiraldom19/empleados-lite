@@ -24,7 +24,7 @@ export default function useFormulario(fetchList: () => void) {
       return;
     }
 
-    // Reiniciar formulario
+    // Reiniciar modal para agregar empleado
     setForm({
       estado: "activo",
       fechaIngreso: new Date().toISOString().slice(0, 10),

@@ -34,7 +34,7 @@ export default function useFiltro() {
     });
   }, [params]);
 
-  //Sincronizar URL cada vez que cambien los filtros (sin crear bucles)
+  //sincronixa la URL pero sin crear bucle, analiza que si cambian los filtros
   useEffect(() => {
     if (isFirstLoad) {
       setIsFirstLoad(false);

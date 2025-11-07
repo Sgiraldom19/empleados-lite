@@ -1,5 +1,3 @@
-// hooks/usePagination.ts
-
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
@@ -52,7 +50,7 @@ export default function usePagination(opts: UsePaginationOptions = {}) {
 
     _setPageSize(size);
 
-    _setPage(1); // opcional: volver a la 1 al cambiar tamaño
+    _setPage(1); // cada que cambiamos la cantidad de registros , volvemos a la pag 1
 
   };
  

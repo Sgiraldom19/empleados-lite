@@ -19,7 +19,7 @@ export default function useInfTabla() {
 
   const { sort, dir, toggleSort } = useTabla();
 
-  // Función que obtiene la data
+  // Función que obtiene la informacion de la API
   const fetchList = async () => {
     const usp = new URLSearchParams({
       page: String(page),
@@ -49,7 +49,7 @@ export default function useInfTabla() {
     data,
     fetchList,
 
-    // filtros
+    // info filtros
     q,
     cargo,
     estado,
@@ -57,14 +57,14 @@ export default function useInfTabla() {
     setCargo,
     setEstado,
 
-    // paginación
+    // info paginación
     page,
     pageSize,
     totalPages,
     setPage,
     setPageSize,
 
-    // ordenamiento
+    // info ordenamiento
     sort,
     dir,
     toggleSort,

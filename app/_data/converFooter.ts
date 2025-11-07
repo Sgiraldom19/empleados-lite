@@ -1,7 +1,7 @@
 import jsonData from "./footer.json";
 import datosjson from "./nav.json"
 
-// Aquí convertimos el JSON en una constante
+// Aquí extraemos la informacion del doc json y lo guardamos en la variable correspondiente
 export const FOOTER_INFO = {
   company: jsonData.company,
   links: jsonData.links,
