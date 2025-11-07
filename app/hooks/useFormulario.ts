@@ -11,7 +11,6 @@ export default function useFormulario(fetchList: () => void) {
 
   async function save() {
     const body = { ...form, estado: form.estado?.trim().toLowerCase(), salario: Number(form.salario) };
-    console.log("Enviando al backend: ", body);
     const opts = {
       method: editing ? "PATCH" : "POST",
       headers: { "Content-Type": "application/json" },
