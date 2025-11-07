@@ -1,13 +1,9 @@
 "use client";
-import navData from "../_data/nav.json";
-
-export interface NavLink {
-  label: string;
-  href: string;
-}
+import { NAV_INFO } from "../_data/converFooter";
+import {NavLink} from "../_types/ui";
 
 export function useNav() {
-  const { links } = navData;
+  const { links } = NAV_INFO;
 
   return {
     links: links as NavLink[],

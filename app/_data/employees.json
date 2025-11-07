@@ -16,16 +16,16 @@
     "fechaIngreso": "2025-11-06"
   },
   {
-    "id": "0857a528-25b4-446f-a6d4-a859954440c8",
-    "nombre": "Chasn",
-    "cargo": "Petee",
-    "salario": 324534,
+    "id": "98b4bb18-6b6a-4202-b588-1da9f148432b",
+    "nombre": "Miguelon",
+    "cargo": "Developer",
+    "salario": 1950000,
     "estado": "activo",
-    "fechaIngreso": "2025-11-04"
+    "fechaIngreso": "2025-11-01"
   },
   {
     "id": "44a3014a-fa22-4c3d-848c-3a8cd3011c75",
-    "nombre": "Miguelitoo",
+    "nombre": "Miguelito",
     "cargo": "Revision",
     "salario": 18000000,
     "estado": "activo",

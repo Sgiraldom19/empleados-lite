@@ -10,13 +10,15 @@ import useFiltro from "./hooks/useFiltro";
 import useFormulario from "./hooks/useFormulario";
 import useModal from "./hooks/useModal";
 import useTabla from "./hooks/useTabla";
-
+import useInfTabla from "./hooks/useInfTabla";
 
 export default function EmpleadosPage() {
-  const [data, setData] = useState<Emp[]>([]);
-  const { pageSize, total, setPageSize, setTotal} = usePagination({initialPage: 1, initialPageSize: 10}); 
-  const{ q, cargo, estado, page, setQ, setCargo, setEstado, setSort, setDir, setPage} = useFiltro();
-  const{sort, dir, toggleSort} = useTabla();
+  const {
+    data, q, cargo, estado, page, pageSize,
+    totalPages, setQ, setCargo, setEstado, setPage, setPageSize,
+    sort, dir, toggleSort, fetchList,
+  } = useInfTabla();
+  const { form, setForm, editing, save, edit, remove } = useFormulario(fetchList);
   const {showModal, openModal, closeModal} = useModal();
   
   async function handleEdit(id: string) {
@@ -24,35 +26,6 @@ export default function EmpleadosPage() {
   openModal();
 }
 
-
-  // Obtener datos del backend
-  const fetchList = async () => {
-    const usp = new URLSearchParams({
-      page: String(page),
-      pageSize: String(pageSize),
-    });
-    if (q) usp.set("q", q);
-    if (cargo) usp.set("cargo", cargo);
-    if (estado) usp.set("estado", estado);
-    if (sort) usp.set("sort", sort);
-    if (dir) usp.set("dir", dir);
-
-    const r = await fetch(`/api/employees?${usp.toString()}`);
-    const j = await r.json();
-    setData(j.items);
-    setTotal(j.total);
-  };
-
-    const {form, setForm, editing, save, edit, remove} = useFormulario(fetchList);
-
-  useEffect(() => {
-    fetchList();
-  }, [q, cargo, estado, page, pageSize, sort, dir]);
-
-
-  
-
-  const totalPages = Math.max(1, Math.ceil(total / pageSize));
 
   return (
     <main className="p-15 m-10">
